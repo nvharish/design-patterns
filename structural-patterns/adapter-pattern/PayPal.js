@@ -1,20 +1,16 @@
 /**
- * This acts as an wrapper to the thrid party service class.
+ * This acts as an wrapper/adapter to the thrid party service class.
  */
 
 const PaymentGateway = require("./PaymentGateway.js");
 const PayPalService = require("./PayPalService.js");
 
 class PayPal extends PaymentGateway {
-    #secretKey = undefined;
-    #publicKey = undefined;
     #PayPalService;
 
     constructor(secretKey, publicKey) {
         super();
-        this.#secretKey = secretKey;
-        this.#publicKey = publicKey;
-        this.#PayPalService = new PayPalService();
+        this.#PayPalService = new PayPalService(secretKey, publicKey);
     }
 
     authorizePayment() {

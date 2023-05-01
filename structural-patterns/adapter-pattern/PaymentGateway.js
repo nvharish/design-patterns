@@ -4,7 +4,11 @@
 
 class PaymentGateway {
 
-    constructor() { }
+    constructor() {
+        if (this.constructor === PaymentGateway) {
+            throw new Error("Abstract class cannot be instantiated")
+        }
+    }
 
     authorizePayment() {
         throw new Error("Abstract class method cannot be invoked");

@@ -1,20 +1,16 @@
 /**
- * This acts as an wrapper to the thrid party service class.
+ * This acts as an wrapper/adapter to the thrid party service class.
  */
 
 const PaymentGateway = require("./PaymentGateway.js");
 const StripeService = require("./StripeService.js");
 
 class Stripe extends PaymentGateway {
-    #secretKey = undefined;
-    #publicKey = undefined;
     #stripeService;
 
     constructor(secretKey, publicKey) {
         super();
-        this.#secretKey = secretKey;
-        this.#publicKey = publicKey;
-        this.#stripeService = new StripeService();
+        this.#stripeService = new StripeService(secretKey, publicKey);
     }
 
     authorizePayment() {
